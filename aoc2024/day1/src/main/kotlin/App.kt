@@ -1,3 +1,7 @@
+package org.nobody.day1
+
+import org.nobody.utils.Util
+
 import kotlin.math.abs
 
 val testInput =
