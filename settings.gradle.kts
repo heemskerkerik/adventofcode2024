@@ -16,7 +16,8 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
-include(":day1")
 include(":utils")
+include(":day1")
+include(":day2")
 
 rootProject.name = "aoc2024"

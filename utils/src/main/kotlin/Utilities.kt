@@ -15,6 +15,11 @@ object Util {
         return Pair(firstList, secondList)
     }
 
+    fun parseGrid(input: String): List<List<String>> =
+        input.lines()
+            .filter { it.isNotBlank() }
+            .map { it.split(Regex("\\s+")) }
+
     fun downloadInput(day: Int): String {
         val client = OkHttpClient()
         val sessionToken = System.getenv("SESSION")
