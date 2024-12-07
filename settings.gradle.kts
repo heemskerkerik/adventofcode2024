@@ -19,5 +19,6 @@ plugins {
 include(":utils")
 include(":day1")
 include(":day2")
+include(":day3")
 
 rootProject.name = "aoc2024"
