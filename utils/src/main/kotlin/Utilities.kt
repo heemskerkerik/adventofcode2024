@@ -15,10 +15,15 @@ object Util {
         return Pair(firstList, secondList)
     }
 
-    fun parseGrid(input: String): List<List<String>> =
+    fun parseSpacedGrid(input: String): List<List<String>> =
         input.lines()
             .filter { it.isNotBlank() }
             .map { it.split(Regex("\\s+")) }
+
+    fun parseCharGrid(input: String): List<List<Char>> =
+        input.lines()
+            .filter { it.isNotBlank() }
+            .map { it.map { c -> c.toChar() } }
 
     fun downloadInput(day: Int): String {
         val client = OkHttpClient()

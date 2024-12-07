@@ -15,7 +15,7 @@ val testInput =
     """.trimIndent()
 
 fun main() {
-    val rawGrid = Util.parseGrid(Util.downloadInput(2))
+    val rawGrid = Util.parseSpacedGrid(Util.downloadInput(2))
 //    val rawGrid = Util.parseGrid(testInput)
 
     val grid = rawGrid.map { row -> row.map { it.toInt() } }
