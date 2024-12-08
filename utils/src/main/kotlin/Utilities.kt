@@ -28,15 +28,28 @@ fun parseCharGrid(input: String): List<List<Char>> =
         .filter { it.isNotBlank() }
         .map { it.map { c -> c.toChar() } }
 
-fun List<List<Char>>.findOne(needle: Char): Pair<Int, Int> {
+fun List<List<Char>>.findOne(needle: Char): Point {
     for (row in 0..<this.size) {
         for (column in 0..<this[0].size) {
             if (this[row][column] == needle)
-                return Pair(row, column)
+                return Point(column, row)
         }
     }
 
     throw Exception("Needle not found")
+}
+
+fun List<List<Char>>.findAll(needle: Char): List<Point> {
+    val result = mutableListOf<Point>()
+
+    for (row in 0..<this.size) {
+        for (column in 0..<this[0].size) {
+            if (this[row][column] == needle)
+                result.add(Point(column, row))
+        }
+    }
+
+    return result
 }
 
 fun downloadInput(day: Int): String {

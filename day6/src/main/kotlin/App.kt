@@ -32,17 +32,15 @@ enum class Direction {
 
 sealed class TraverseOutput
 
-data class Traversal(val locations: Set<Location>): TraverseOutput()
+data class Traversal(val locations: Set<Point>): TraverseOutput()
 class Loop: TraverseOutput()
-
-data class Location(val x: Int, val y: Int)
 
 fun main() {
 //    val input = testInput
     val input = downloadInput(6)
 
     val grid = parseCharGrid(input)
-    val startingLocation = grid.findOne('^').let { Location(it.second, it.first) }
+    val startingLocation = grid.findOne('^')
 
     val locations = (grid.traverse(startingLocation) as Traversal).locations
     val phase1 = locations.size
@@ -52,12 +50,12 @@ fun main() {
     println(phase2)
 }
 
-fun List<List<Char>>.traverse(start: Location, collectLocations: Boolean = true, obstacle: Location? = null): TraverseOutput {
+fun List<List<Char>>.traverse(start: Point, collectLocations: Boolean = true, obstacle: Point? = null): TraverseOutput {
     var location = start
     var direction = Direction.NORTH
 
-    val turns = mutableSetOf<Pair<Location, Direction>>()
-    val locations = mutableSetOf<Location>()
+    val turns = mutableSetOf<Pair<Point, Direction>>()
+    val locations = mutableSetOf<Point>()
 
     if (collectLocations) {
         locations.add(start)
@@ -91,7 +89,7 @@ fun List<List<Char>>.traverse(start: Location, collectLocations: Boolean = true,
     return Traversal(locations)
 }
 
-fun Location.stepTo(direction: Direction): Location {
+fun Point.stepTo(direction: Direction): Point {
     val newX = when (direction) {
         Direction.NORTH -> this.x - 1
         Direction.SOUTH -> this.x + 1
@@ -103,9 +101,9 @@ fun Location.stepTo(direction: Direction): Location {
         else -> this.y
     }
 
-    return Location(newX, newY)
+    return Point(newX, newY)
 }
 
-fun Location.isOutOfBounds(grid: List<List<*>>): Boolean =
+fun Point.isOutOfBounds(grid: List<List<*>>): Boolean =
     this.x < 0 || this.x >= grid.size
       || this.y < 0 || this.y >= grid[0].size
