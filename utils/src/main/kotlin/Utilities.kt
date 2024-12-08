@@ -28,6 +28,17 @@ fun parseCharGrid(input: String): List<List<Char>> =
         .filter { it.isNotBlank() }
         .map { it.map { c -> c.toChar() } }
 
+fun List<List<Char>>.findOne(needle: Char): Pair<Int, Int> {
+    for (row in 0..<this.size) {
+        for (column in 0..<this[0].size) {
+            if (this[row][column] == needle)
+                return Pair(row, column)
+        }
+    }
+
+    throw Exception("Needle not found")
+}
+
 fun downloadInput(day: Int): String {
     val client = OkHttpClient()
     val sessionToken = System.getenv("SESSION")
