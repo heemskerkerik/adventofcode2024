@@ -1,13 +1,13 @@
 package org.nobody.day3
 
-import org.nobody.utils.Util
+import org.nobody.utils.*
 
 val testInput =
     """xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))""".trimIndent()
 
 fun main() {
 //    val input = testInput
-    val input = Util.downloadInput(3)
+    val input = downloadInput(3)
 
     val phase1 = Regex("mul\\((\\d+),(\\d+)\\)").findAll(input)
         .sumOf { it.groupValues[1].toInt() * it.groupValues[2].toInt() }

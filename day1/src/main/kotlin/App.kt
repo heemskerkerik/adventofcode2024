@@ -1,6 +1,6 @@
 package org.nobody.day1
 
-import org.nobody.utils.Util
+import org.nobody.utils.*
 
 import kotlin.math.abs
 
@@ -15,8 +15,8 @@ val testInput =
     """.trimIndent()
 
 fun main() {
-    val lists = Util.parseTwoLists(Util.downloadInput(1))
-//    val lists = Util.parseTwoLists(testInput)
+//    val lists = parseTwoLists(testInput)
+    val lists = parseTwoLists(downloadInput(1))
 
     val left = lists.component1().map { it.toInt() }.sorted()
     val right = lists.component2().map { it.toInt() }.sorted()

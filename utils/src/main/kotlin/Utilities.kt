@@ -3,42 +3,44 @@ package org.nobody.utils
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-object Util {
-    fun parseTwoLists(input: String): Pair<List<String>, List<String>> {
-        val lines = input.lines()
-            .filter { it.isNotBlank() }
-            .map { it.split(Regex("\\s+"), limit = 2) }
+fun String.nonEmptyLines(): List<String> {
+    return this.lines().filter { it.isNotBlank() }
+}
 
-        val firstList = lines.map { it[0] }
-        val secondList = lines.map { it[1] }
+fun parseTwoLists(input: String): Pair<List<String>, List<String>> {
+    val lines = input.lines()
+        .filter { it.isNotBlank() }
+        .map { it.split(Regex("\\s+"), limit = 2) }
 
-        return Pair(firstList, secondList)
-    }
+    val firstList = lines.map { it[0] }
+    val secondList = lines.map { it[1] }
 
-    fun parseSpacedGrid(input: String): List<List<String>> =
-        input.lines()
-            .filter { it.isNotBlank() }
-            .map { it.split(Regex("\\s+")) }
+    return Pair(firstList, secondList)
+}
 
-    fun parseCharGrid(input: String): List<List<Char>> =
-        input.lines()
-            .filter { it.isNotBlank() }
-            .map { it.map { c -> c.toChar() } }
+fun parseSpacedGrid(input: String): List<List<String>> =
+    input.lines()
+        .filter { it.isNotBlank() }
+        .map { it.split(Regex("\\s+")) }
 
-    fun downloadInput(day: Int): String {
-        val client = OkHttpClient()
-        val sessionToken = System.getenv("SESSION")
+fun parseCharGrid(input: String): List<List<Char>> =
+    input.lines()
+        .filter { it.isNotBlank() }
+        .map { it.map { c -> c.toChar() } }
 
-        val request = Request.Builder()
-            .url("https://adventofcode.com/2024/day/$day/input")
-            .get()
-            .header("Cookie", "session=$sessionToken")
-            .build()
+fun downloadInput(day: Int): String {
+    val client = OkHttpClient()
+    val sessionToken = System.getenv("SESSION")
 
-        client.newCall(request).execute().use {
-            require(it.isSuccessful)
+    val request = Request.Builder()
+        .url("https://adventofcode.com/2024/day/$day/input")
+        .get()
+        .header("Cookie", "session=$sessionToken")
+        .build()
 
-            return it.body!!.string()
-        }
+    client.newCall(request).execute().use {
+        require(it.isSuccessful)
+
+        return it.body!!.string()
     }
 }

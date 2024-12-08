@@ -1,6 +1,6 @@
 package org.nobody.day4
 
-import org.nobody.utils.Util
+import org.nobody.utils.*
 
 val testInput =
     """
@@ -17,8 +17,8 @@ val testInput =
     """.trimIndent()
 
 fun main() {
-//    val input = Util.parseCharGrid(testInput)
-    val input = Util.parseCharGrid(Util.downloadInput(4))
+//    val input = parseCharGrid(testInput)
+    val input = parseCharGrid(downloadInput(4))
 
     val phase1 = sequence {
         for (row in 0..<input.size) {

@@ -1,6 +1,6 @@
 package org.nobody.day2
 
-import org.nobody.utils.Util
+import org.nobody.utils.*
 
 import kotlin.math.abs
 
@@ -15,8 +15,8 @@ val testInput =
     """.trimIndent()
 
 fun main() {
-    val rawGrid = Util.parseSpacedGrid(Util.downloadInput(2))
-//    val rawGrid = Util.parseGrid(testInput)
+    val rawGrid = parseSpacedGrid(downloadInput(2))
+//    val rawGrid = parseSpacedGrid(testInput)
 
     val grid = rawGrid.map { row -> row.map { it.toInt() } }
 
