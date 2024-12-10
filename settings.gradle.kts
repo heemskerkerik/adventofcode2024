@@ -23,7 +23,8 @@ include(":day3")
 include(":day4")
 include(":day5")
 include(":day6")
+include(":day7")
+include(":day8")
+include(":day9")
 
 rootProject.name = "aoc2024"
-include("day7")
-include("day8")
