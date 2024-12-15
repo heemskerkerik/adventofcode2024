@@ -27,5 +27,6 @@ include(":day7")
 include(":day8")
 include(":day9")
 include(":day10")
+include(":day11")
 
 rootProject.name = "aoc2024"
